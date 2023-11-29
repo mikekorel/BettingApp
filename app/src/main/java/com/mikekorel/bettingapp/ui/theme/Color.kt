@@ -1,11 +1,15 @@
 package com.mikekorel.bettingapp.ui.theme
 
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+data class AppColors(
+    val yellow: Color = Color(0xFFFFAB30),
+    val red: Color = Color(0xFFE7410F),
+    val blue: Color = Color(0xFF0094FF),
+    val grey: Color = Color(0xFF343434),
+    val black: Color = Color(0xFF000000),
+    val white: Color = Color(0xFFFFFFFF),
+)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+internal val LocalColors = staticCompositionLocalOf { AppColors() }
