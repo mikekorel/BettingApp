@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mikekorel.designsystem"
+    namespace = "com.mikekorel.domain"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -31,27 +31,23 @@ android {
     kotlinOptions {
         jvmTarget = libs.versions.jvmTarget.get().toString()
     }
-    buildFeatures {
-        compose = true
-    }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get().toString()
     }
+
 }
 
 dependencies {
 
     implementation(projects.core)
+    implementation(projects.data)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.bundles.compose)
+    implementation(libs.material)
 
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-
 }
