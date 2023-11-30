@@ -1,4 +1,4 @@
-package com.mikekorel.bettingapp.ui.theme
+package com.mikekorel.designsystem.theme
 
 import android.app.Activity
 import android.os.Build

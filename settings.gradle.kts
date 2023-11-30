@@ -14,5 +14,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "BettingApp"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
- 
+include(":designsystem")

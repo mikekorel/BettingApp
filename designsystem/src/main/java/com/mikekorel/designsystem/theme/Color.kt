@@ -1,4 +1,4 @@
-package com.mikekorel.bettingapp.ui.theme
+package com.mikekorel.designsystem.theme
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color

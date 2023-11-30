@@ -12,7 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.mikekorel.bettingapp.common.CollectAsEffect
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.Event
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.State
-import com.mikekorel.bettingapp.ui.theme.AppTheme
+import com.mikekorel.designsystem.theme.AppTheme
 
 @Composable
 fun HomeScreen(

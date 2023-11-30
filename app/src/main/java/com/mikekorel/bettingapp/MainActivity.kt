@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreen
-import com.mikekorel.bettingapp.ui.theme.AppTheme
+import com.mikekorel.designsystem.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.mikekorel.bettingapp.ui.theme
+package com.mikekorel.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
