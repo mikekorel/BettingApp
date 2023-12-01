@@ -46,6 +46,10 @@ private fun HomeScreenContent(
             color = AppTheme.colors.blue,
             modifier = Modifier.align(Alignment.Center)
         )
+        Text(
+            text = currState.sportsList.getOrNull(0)?.name ?: "error",
+            modifier = Modifier.align(Alignment.TopCenter)
+        )
     }
 }
 

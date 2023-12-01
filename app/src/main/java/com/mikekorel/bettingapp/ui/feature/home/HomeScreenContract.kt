@@ -3,6 +3,7 @@ package com.mikekorel.bettingapp.ui.feature.home
 import com.mikekorel.bettingapp.core.UiEffect
 import com.mikekorel.bettingapp.core.UiEvent
 import com.mikekorel.bettingapp.core.UiState
+import com.mikekorel.domain.model.Sport
 
 interface HomeScreenContract {
 
@@ -11,6 +12,7 @@ interface HomeScreenContract {
     }
 
     data class State(
+        val sportsList: List<Sport> = emptyList(),
 
         override var isLoading: Boolean = false,
         override var hasError: Boolean = false,

@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -45,6 +48,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.bundles.hilt)
+    kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
 

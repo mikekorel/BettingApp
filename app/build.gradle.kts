@@ -57,12 +57,15 @@ dependencies {
     implementation(projects.core)
     implementation(projects.domain)
     implementation(projects.designsystem)
+    implementation(projects.data)
+    implementation(projects.network)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.bundles.hilt)
+    kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
 
@@ -71,7 +74,6 @@ dependencies {
 
     debugImplementation(libs.bundles.debug)
 
-    kapt(libs.hilt.android.compiler)
 
 }
 

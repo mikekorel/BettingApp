@@ -41,10 +41,12 @@ dependencies {
 
     implementation(projects.core)
     implementation(projects.data)
+    implementation(projects.network)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.bundles.hilt)
 
     testImplementation(libs.junit)
 
