@@ -5,7 +5,9 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -107,6 +109,10 @@ private fun HomeScreenContent(
                         }
                     }
                 }
+
+                item {
+                    Spacer(modifier = Modifier.height(spacing.spacing05))
+                }
             }
         }
     }
@@ -116,6 +122,11 @@ private fun HomeScreenContent(
 @Composable
 private fun HomeScreenPrev() {
     AppTheme {
-        HomeScreenContent(currState = State(), onEvent = { })
+        HomeScreenContent(
+            currState = State(
+                // add mock data here
+            ),
+            onEvent = { }
+        )
     }
 }

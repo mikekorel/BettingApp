@@ -12,12 +12,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.mikekorel.bettingapp.R
 import com.mikekorel.designsystem.theme.AppTheme
 import com.mikekorel.designsystem.theme.AppTheme.colors
 import com.mikekorel.designsystem.theme.AppTheme.sizing
 import com.mikekorel.designsystem.theme.AppTheme.spacing
+import com.mikekorel.designsystem.theme.Typography
 import com.mikekorel.domain.model.SportEvent
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -32,7 +35,7 @@ fun SportSectionItem(
 ) {
     Column(
         modifier = modifier.padding(
-            horizontal = spacing.spacing04,
+            horizontal = spacing.spacing03,
             vertical = spacing.spacing05
         ),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -45,7 +48,11 @@ fun SportSectionItem(
                     width = sizing.xxxSmall, color = colors.blue,
                     shape = RoundedCornerShape(spacing.spacing02)
                 )
-                .padding(vertical = spacing.spacing02, horizontal = spacing.spacing03)
+                .padding(vertical = spacing.spacing02, horizontal = spacing.spacing03),
+            style = Typography.bodySmall,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
+            textAlign = TextAlign.Center,
         )
 
         val drawableId = if (isFavorite) R.drawable.ic_star_filled else R.drawable.ic_star
@@ -65,11 +72,29 @@ fun SportSectionItem(
             }
         )
 
-        Text(text = sportEvent.firstTeamName.orEmpty(), color = colors.white)
+        Text(
+            text = sportEvent.firstTeamName.orEmpty(),
+            color = colors.white,
+            style = Typography.bodySmall,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
+            textAlign = TextAlign.Center,
+        )
 
-        Text(text = stringResource(R.string.vs), color = colors.red)
+        Text(
+            text = stringResource(R.string.vs),
+            color = colors.red,
+            style = Typography.bodySmall
+        )
 
-        Text(text = sportEvent.secondTeamName.orEmpty(), color = colors.white)
+        Text(
+            text = sportEvent.secondTeamName.orEmpty(),
+            color = colors.white,
+            style = Typography.bodySmall,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
+            textAlign = TextAlign.Center,
+        )
     }
 }
 

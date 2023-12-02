@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,12 +41,13 @@ fun SportSectionHeader(
         modifier = Modifier
             .fillMaxWidth()
             .background(colors.white)
-            .padding(horizontal = spacing.spacing07, vertical = spacing.spacing04)
+            .padding(horizontal = spacing.spacing07)
     ) {
         Text(
             text = sport.name.orEmpty(),
-            style = Typography.labelLarge,
+            style = Typography.titleMedium,
             fontWeight = FontWeight.Bold,
+
             color = colors.black,
             modifier = Modifier
                 .weight(1f)
@@ -62,6 +64,7 @@ fun SportSectionHeader(
             contentDescription = stringResource(R.string.expand_and_collapse_section_button),
             modifier = Modifier
                 .padding(start = spacing.spacing04)
+                .size(sizing.xLarge)
                 .clickable(onClick = onExpandClick)
                 .rotate(if (sectionExpanded) 180f else 0f)
         )

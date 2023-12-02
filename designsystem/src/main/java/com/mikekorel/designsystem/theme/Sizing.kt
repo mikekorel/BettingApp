@@ -14,7 +14,7 @@ data class AppSizing(
     val large: Dp = 24.dp,
     val xLarge: Dp = 32.dp,
     val xxLarge: Dp = 64.dp,
-    val xxxLarge: Dp = 128.dp,
+    val xxxLarge: Dp = 96.dp,
 )
 
 internal val LocalSizing = staticCompositionLocalOf { AppSizing() }
