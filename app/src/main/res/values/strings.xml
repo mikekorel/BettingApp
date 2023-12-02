@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BettingApp</string>
+    <string name="app_name">Betting App</string>
     <string name="favorite_button_not_highlighted">Favorite button, not highlighted</string>
     <string name="favorite_button_highlighted">Favorite button, highlighted</string>
     <string name="vs">vs</string>

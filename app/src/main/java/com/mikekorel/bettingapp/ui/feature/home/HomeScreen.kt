@@ -1,13 +1,11 @@
 package com.mikekorel.bettingapp.ui.feature.home
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -20,6 +18,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mikekorel.bettingapp.R
@@ -28,6 +28,7 @@ import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.Event
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.State
 import com.mikekorel.bettingapp.ui.feature.home.components.SportSectionHeader
 import com.mikekorel.bettingapp.ui.feature.home.components.SportSectionItem
+import com.mikekorel.core.utils.TestTag
 import com.mikekorel.designsystem.theme.AppTheme
 import com.mikekorel.designsystem.theme.AppTheme.colors
 import com.mikekorel.designsystem.theme.AppTheme.sizing
@@ -55,7 +56,7 @@ fun HomeScreen(
 }
 
 @Composable
-private fun HomeScreenContent(
+internal fun HomeScreenContent(
     currState: State,
     onEvent: (Event) -> Unit,
     modifier: Modifier = Modifier,
@@ -65,9 +66,22 @@ private fun HomeScreenContent(
             .fillMaxSize()
             .background(colors.grey)
     ) {
+        Text(
+            text = stringResource(id = R.string.app_name),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(colors.blue)
+                .padding(all = spacing.spacing05),
+            color = colors.white,
+            style = Typography.titleLarge,
+        )
+
         when {
             currState.hasError -> { // error state
-                Box(modifier = Modifier.fillMaxSize()) {
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .semantics { testTag = TestTag.HOME_SCREEN_ERROR_COMPONENT }
+                ) {
                     Text(
                         text = stringResource(R.string.an_error_has_occurred_check_again_later),
                         style = Typography.bodyLarge,
@@ -78,7 +92,10 @@ private fun HomeScreenContent(
             }
 
             currState.sportsList.isEmpty() -> {     // empty state
-                Box(modifier = Modifier.fillMaxSize()) {
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .semantics { testTag = TestTag.HOME_SCREEN_EMPTY_COMPONENT }
+                ) {
                     Text(
                         text = stringResource(R.string.no_events_are_currently_available),
                         style = Typography.bodyLarge,

@@ -24,6 +24,7 @@ import com.mikekorel.designsystem.theme.Typography
 import com.mikekorel.domain.model.SportEvent
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.TimeZone
 
 @Composable
 fun SportSectionItem(
@@ -41,7 +42,11 @@ fun SportSectionItem(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = formatTimeUntilEvent(sportEvent.startTime ?: 0L, currTimeMillis),
+            text = formatTimeUntilEvent(
+                (sportEvent.startTime ?: 0L) * 1000,
+                currTimeMillis,
+                stringResource(R.string.completed)
+            ),
             color = colors.white,
             modifier = Modifier
                 .border(
@@ -98,12 +103,12 @@ fun SportSectionItem(
     }
 }
 
-@Composable
-private fun formatTimeUntilEvent(startTime: Long, currTime: Long): String {
-    val diff = (startTime * 1000) - currTime
-    if (diff <= 0) return stringResource(R.string.completed)
+fun formatTimeUntilEvent(startTime: Long, currTime: Long, completedStr: String): String {
+    val diff = startTime - currTime
+    if (diff <= 0) return completedStr
 
     val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+    sdf.timeZone = TimeZone.getTimeZone("UTC")
     return sdf.format(diff)
 }
 
