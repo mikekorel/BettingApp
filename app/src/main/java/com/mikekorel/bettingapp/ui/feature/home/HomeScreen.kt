@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,7 +11,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -72,22 +70,40 @@ private fun HomeScreenContent(
                 ) {
                     SportSectionHeader(
                         sport = sport,
-                        sectionExpanded = sport.id !in currState.hiddenSectionSportIds
-                    ) {
-                        sport.id?.let { id ->
-                            onEvent(Event.OnSectionExpandClicked(id))
+                        switchChecked = sport.id in currState.switchesOnSectionSportIds,
+                        sectionExpanded = sport.id !in currState.hiddenSectionSportIds,
+                        onSwitchClick = {
+                            sport.id?.let { id ->
+                                onEvent(Event.OnSectionSwitchClick(id))
+                            }
+                        },
+                        onExpandClick = {
+                            sport.id?.let { id ->
+                                onEvent(Event.OnSectionExpandClick(id))
+                            }
                         }
-                    }
+                    )
                 }
 
                 sport.events?.let { events ->
-                    items(events) {
-                        AnimatedVisibility(
-                            visible = sport.id !in currState.hiddenSectionSportIds,
-                            enter = expandVertically(expandFrom = Alignment.Top),
-                            exit = shrinkVertically()
-                        ) {
-                            SportSectionItem(sportEvent = it)
+                    val sectionIsVisible = sport.id !in currState.hiddenSectionSportIds
+                    val switchOn = sport.id in currState.switchesOnSectionSportIds
+                    val showEvents = if (!switchOn)
+                        events
+                    else {
+                        events.filter { it.id in currState.favoriteEventsIds }
+                    }
+                    if (sectionIsVisible) {
+                        items(showEvents) { event ->
+                            val itemIsFavorite = event.id in currState.favoriteEventsIds
+                            SportSectionItem(
+                                sportEvent = event,
+                                isFavorite = itemIsFavorite,
+                                currTimeMillis = currState.currTimeMillis,
+                                onFavoriteClick = {
+                                    onEvent(Event.OnEventFavoriteClick(it))
+                                }
+                            )
                         }
                     }
                 }

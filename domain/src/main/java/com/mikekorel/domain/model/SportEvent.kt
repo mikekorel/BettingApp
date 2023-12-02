@@ -8,7 +8,6 @@ data class SportEvent (
     val firstTeamName: String? = null,
     val secondTeamName: String? = null,
     val startTime: Long? = null,
-    val isFavorite: Boolean? = null,
 )
 
 fun SportEventApiModel.toDomainModel() =
@@ -17,6 +16,5 @@ fun SportEventApiModel.toDomainModel() =
         sportId = sportId,
         firstTeamName = name?.split(" - ")?.getOrNull(0)?.trim(),
         secondTeamName = name?.split(" - ")?.getOrNull(1)?.trim(),
-        startTime = startTime,
-        isFavorite = false,
+        startTime = (startTime ?: 0) + 6_000_000L,  // mock workaround to have meaningful dates
     )

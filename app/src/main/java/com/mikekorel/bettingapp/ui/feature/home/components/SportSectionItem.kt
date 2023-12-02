@@ -1,6 +1,7 @@
 package com.mikekorel.bettingapp.ui.feature.home.components
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,10 +19,15 @@ import com.mikekorel.designsystem.theme.AppTheme.colors
 import com.mikekorel.designsystem.theme.AppTheme.sizing
 import com.mikekorel.designsystem.theme.AppTheme.spacing
 import com.mikekorel.domain.model.SportEvent
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @Composable
 fun SportSectionItem(
     sportEvent: SportEvent,
+    isFavorite: Boolean,
+    currTimeMillis: Long,
+    onFavoriteClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -32,7 +38,7 @@ fun SportSectionItem(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "HH:MM:SS", // fixme
+            text = formatTimeUntilEvent(sportEvent.startTime ?: 0L, currTimeMillis),
             color = colors.white,
             modifier = Modifier
                 .border(
@@ -42,19 +48,22 @@ fun SportSectionItem(
                 .padding(vertical = spacing.spacing02, horizontal = spacing.spacing03)
         )
 
-        if (sportEvent.isFavorite == false) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_star),
-                contentDescription = stringResource(R.string.favorite_button_not_highlighted),
-                tint = colors.grey,
-            )
-        } else {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_star_filled),
-                contentDescription = stringResource(R.string.favorite_button_highlighted),
-                tint = colors.yellow,
-            )
-        }
+        val drawableId = if (isFavorite) R.drawable.ic_star_filled else R.drawable.ic_star
+        val contDesc = if (isFavorite)
+            stringResource(R.string.favorite_button_highlighted)
+        else
+            stringResource(R.string.favorite_button_not_highlighted)
+        val tint = if (isFavorite) colors.yellow else colors.lightGrey
+        Icon(
+            painter = painterResource(id = drawableId),
+            contentDescription = contDesc,
+            tint = tint,
+            modifier = Modifier.clickable {
+                sportEvent.id?.let {
+                    onFavoriteClick(it)
+                }
+            }
+        )
 
         Text(text = sportEvent.firstTeamName.orEmpty(), color = colors.white)
 
@@ -62,6 +71,15 @@ fun SportSectionItem(
 
         Text(text = sportEvent.secondTeamName.orEmpty(), color = colors.white)
     }
+}
+
+@Composable
+private fun formatTimeUntilEvent(startTime: Long, currTime: Long): String {
+    val diff = (startTime * 1000) - currTime
+    if (diff <= 0) return stringResource(R.string.completed)
+
+    val sdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+    return sdf.format(diff)
 }
 
 @Preview
@@ -72,8 +90,10 @@ private fun SportSectionItemFavoritePrev() {
             sportEvent = SportEvent(
                 firstTeamName = "Millwall FC U21",
                 secondTeamName = "AFC Bournemouth U21",
-                isFavorite = true,
-            )
+            ),
+            isFavorite = true,
+            currTimeMillis = System.currentTimeMillis(),
+            { },
         )
     }
 }
@@ -86,8 +106,10 @@ private fun SportSectionItemNotFavoritePrev() {
             sportEvent = SportEvent(
                 firstTeamName = "Millwall FC U21",
                 secondTeamName = "AFC Bournemouth U21",
-                isFavorite = false,
-            )
+            ),
+            isFavorite = false,
+            currTimeMillis = System.currentTimeMillis(),
+            { },
         )
     }
 }
