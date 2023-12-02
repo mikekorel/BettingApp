@@ -36,7 +36,7 @@ class HomeViewModel @Inject constructor(
                 }
 
                 else -> {
-
+                    setState { copy(hasError = true) }
                 }
             }
         }.launchIn(viewModelScope)

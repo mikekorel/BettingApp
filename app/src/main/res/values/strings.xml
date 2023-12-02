@@ -5,4 +5,6 @@
     <string name="vs">vs</string>
     <string name="expand_and_collapse_section_button">Expand and collapse section button</string>
     <string name="completed">COMPLETED</string>
+    <string name="no_events_are_currently_available">No events are currently available</string>
+    <string name="an_error_has_occurred_check_again_later">An error has occurred, check again later</string>
 </resources>
