@@ -5,7 +5,7 @@ import com.mikekorel.network.model.SportApiModel
 
 data class Sport(
     val id: String? = null,
-    val name: String?,
+    val name: String? = null,
     val events: List<SportEvent>? = null,
 )
 

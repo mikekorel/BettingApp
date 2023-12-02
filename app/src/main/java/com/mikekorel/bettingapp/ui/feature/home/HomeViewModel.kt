@@ -37,8 +37,15 @@ class HomeViewModel @Inject constructor(
     }
     override suspend fun handleEvent(event: Event) {
         when(event) {
-
-            else -> { }
+            is Event.OnSectionExpandClicked -> {
+                val newSectionsHidden = state().value.hiddenSectionSportIds.toHashSet()
+                if (event.sportId in newSectionsHidden) {
+                    newSectionsHidden.remove(event.sportId)
+                } else {
+                    newSectionsHidden.add(event.sportId)
+                }
+                setState { copy(hiddenSectionSportIds = newSectionsHidden) }
+            }
         }
     }
 }
