@@ -1,7 +1,7 @@
 package com.mikekorel.bettingapp.ui.feature.home
 
 import androidx.lifecycle.viewModelScope
-import com.mikekorel.bettingapp.core.CoreViewModel
+import com.mikekorel.core.base.CoreViewModel
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.Event
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.State
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.State.Effect

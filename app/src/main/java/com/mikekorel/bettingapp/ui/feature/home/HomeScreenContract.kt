@@ -1,8 +1,8 @@
 package com.mikekorel.bettingapp.ui.feature.home
 
-import com.mikekorel.bettingapp.core.UiEffect
-import com.mikekorel.bettingapp.core.UiEvent
-import com.mikekorel.bettingapp.core.UiState
+import com.mikekorel.core.base.UiEffect
+import com.mikekorel.core.base.UiEvent
+import com.mikekorel.core.base.UiState
 import com.mikekorel.domain.model.Sport
 
 interface HomeScreenContract {

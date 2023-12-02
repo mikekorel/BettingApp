@@ -23,7 +23,7 @@ import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mikekorel.bettingapp.R
-import com.mikekorel.bettingapp.common.CollectAsEffect
+import com.mikekorel.core.utils.CollectAsEffect
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.Event
 import com.mikekorel.bettingapp.ui.feature.home.HomeScreenContract.State
 import com.mikekorel.bettingapp.ui.feature.home.components.SportSectionHeader

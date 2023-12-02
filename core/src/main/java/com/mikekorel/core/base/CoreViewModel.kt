@@ -1,4 +1,4 @@
-package com.mikekorel.bettingapp.core
+package com.mikekorel.core.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

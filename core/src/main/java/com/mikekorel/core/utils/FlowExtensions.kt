@@ -1,4 +1,4 @@
-package com.mikekorel.bettingapp.common
+package com.mikekorel.core.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

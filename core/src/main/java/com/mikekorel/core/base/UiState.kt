@@ -1,4 +1,4 @@
-package com.mikekorel.bettingapp.core
+package com.mikekorel.core.base
 
 interface UiState {
     var isLoading: Boolean

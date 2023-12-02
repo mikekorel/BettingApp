@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = libs.versions.jvmTarget.get().toString()
     }
+    buildFeatures {
+        compose = true
+    }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get().toString()
     }
@@ -42,6 +45,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.bundles.compose)
 
     testImplementation(libs.junit)
 
